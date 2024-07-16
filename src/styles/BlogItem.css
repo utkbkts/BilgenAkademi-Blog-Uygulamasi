@@ -1,0 +1,66 @@
+.container_blog {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+}
+.product_Item {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 4px 10px 8px rgba(0, 0, 0, 0.5);
+  height: 400px;
+  padding: 10px;
+  width: 400px;
+  position: relative;
+}
+
+.product_Item .product_detail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+.product_Item .product_detail .button_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.product_Item .product_detail > h1 {
+  text-align: center;
+}
+.product_detail .product_author {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 100%;
+}
+.product_Item .image img {
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+  object-fit: contain;
+}
+.product_Item .image {
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+}
+.product_Item .image img:hover {
+  transform: scale(1.2);
+}
+@media (max-width: 600px) {
+  .product_Item {
+    width: 100%;
+  }
+  .product_Item .image {
+    width: 100%;
+  }
+}

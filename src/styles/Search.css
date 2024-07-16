@@ -1,0 +1,52 @@
+.search-container {
+  margin: 20px;
+}
+
+.search-container form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+form > div {
+  width: 100%;
+  display: flex;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+
+select {
+  padding: 10px;
+  outline: none;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+option {
+  height: 35px;
+  background-color: #ddd;
+}
+
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
+  form .wrapper_search {
+    display: flex;
+    flex-direction: column;
+  }
+
+  select {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}

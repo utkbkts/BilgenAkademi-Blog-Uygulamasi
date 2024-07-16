@@ -1,0 +1,28 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-inline: 1rem;
+  margin-top: 15px;
+}
+.header a {
+  text-decoration: none;
+}
+.header .wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header .wrapper img {
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  height: 50px;
+}
+.header .wrapper .__a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
