@@ -12,7 +12,7 @@ Bu projeyi klonlayın
 
 bash
 Kodu kopyala
-git clone https://github.com/kullaniciAdi/blog-yonetim-sistemi.git
+git clone https://github.com/utkbkts/BilgenAkademi-Blog-Uygulamasi.git
 Proje dizinine gidin
 
 bash
@@ -28,7 +28,7 @@ Uygulamayı çalıştırın
 bash
 Kodu kopyala
 npm start
-Bu komut, projenizi http://localhost:3000 adresinde çalıştıracaktır.
+Bu komut, projenizi http://localhost:5173 adresinde çalıştıracaktır.
 
 Kullanım
 Uygulama açıldığında, ana sayfada mevcut blog yazılarını görebilirsiniz. Aşağıdaki işlemleri gerçekleştirebilirsiniz:
