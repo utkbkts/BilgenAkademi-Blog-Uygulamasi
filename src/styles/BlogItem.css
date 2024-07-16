@@ -57,9 +57,6 @@
   transform: scale(1.2);
 }
 @media (max-width: 600px) {
-  .product_Item {
-    width: 100%;
-  }
   .product_Item .image {
     width: 100%;
   }
