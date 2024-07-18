@@ -14,7 +14,6 @@ const BlogItem = ({
   onUpdate,
   url,
 }) => {
-  console.log(image);
   return (
     <div className="container_blog">
       <div className="product_Item">
