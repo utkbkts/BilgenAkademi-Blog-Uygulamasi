@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import BlogItem from "./BlogItem";
-import "../../styles/BlogList.css";
-import Search from "../search/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteData, updateData } from "../../redux/features/dataSlice";
 import toast from "react-hot-toast";
+
+import BlogItem from "./BlogItem";
+import "../../styles/BlogList.css";
+import Search from "../search/Search";
 
 const BlogList = () => {
   const data = useSelector((state) => state.data.datas);
@@ -43,11 +44,11 @@ const BlogList = () => {
       if (value === "author") {
         return a.author.localeCompare(b.author);
       } else if (value === "date") {
-        return new Date(b.date) - new Date(a.date);
       }
     });
 
     setSearchData(sortedData);
+    return new Date(b.date) - new Date(a.date);
   };
 
   // Silme işlemi

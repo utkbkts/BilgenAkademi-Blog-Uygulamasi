@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/Create.css";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+
+import { FaLeftLong } from "react-icons/fa6";
+import { addData, getData, updateData } from "../../redux/features/dataSlice";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
 import TextArea from "../ui/TextArea";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { FaLeftLong } from "react-icons/fa6";
-import { addData, getData, updateData } from "../../redux/features/dataSlice";
-import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import "../../styles/Create.css";
 const AddNewBlog = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
 import React from "react";
-import "../../styles/BlogItem.css";
-import Button from "../ui/Button";
 import { Link } from "react-router-dom";
 
+import Button from "../ui/Button";
+import "../../styles/BlogItem.css";
 const BlogItem = ({
   name,
   author,
