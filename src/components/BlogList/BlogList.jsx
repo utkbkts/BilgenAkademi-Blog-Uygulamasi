@@ -1,28 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteData, updateData } from "../../redux/features/dataSlice";
 import toast from "react-hot-toast";
 
 import BlogItem from "./BlogItem";
 import "../../styles/BlogList.css";
 import Search from "../search/Search";
+import blogData from "../../data/BlogData";
+import AddNewBlog from "./AddNewBlog";
 
 const BlogList = () => {
-  const data = useSelector((state) => state.data.datas);
-  const [searchData, setSearchData] = useState(data);
+  const [searchData, setSearchData] = useState(blogData);
   const [active, setActive] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const dispatch = useDispatch();
-  // data değiştiğinde searchData'yı güncelle
-  useEffect(() => {
-    setSearchData(data);
-  }, [data]);
+  const [productToUpdate, setProductToUpdate] = useState();
+  const [productData, setProductData] = useState({
+    name: "",
+    date: "",
+    author: "",
+    description: "",
+    image: "",
+  });
+
+  function handleSubmit(productData) {
+    const newProduct = {
+      ...productData,
+      id: Math.random(),
+    };
+
+    setSearchData([newProduct, ...searchData]);
+  }
 
   // Arama işlemi
   const handleSearch = (search) => {
     setSearchTerm(search);
     if (search.trim().length > 0) {
-      const filteredData = data.filter((blog) => {
+      const filteredData = searchData.filter((blog) => {
         return (
           blog.name.toLowerCase().includes(search.toLowerCase()) ||
           blog.author.toLowerCase().includes(search.toLowerCase())
@@ -31,7 +42,7 @@ const BlogList = () => {
       setSearchData(filteredData);
       setActive(true);
     } else {
-      setSearchData(data);
+      setSearchData(blogData);
       setActive(false);
     }
   };
@@ -44,29 +55,45 @@ const BlogList = () => {
       if (value === "author") {
         return a.author.localeCompare(b.author);
       } else if (value === "date") {
+        return new Date(b.date) - new Date(a.date); // Sorting by date
       }
     });
 
     setSearchData(sortedData);
-    return new Date(b.date) - new Date(a.date);
   };
 
   // Silme işlemi
   const handleDelete = (id) => {
     if (window.confirm("Silmek istediğine emin misin ?")) {
+      setSearchData((products) =>
+        products.filter((product) => {
+          return product.id !== id;
+        })
+      );
       toast.success("Başarıyla Silindi");
-      dispatch(deleteData(id));
     } else {
       toast.error("Silinme İşlemi Sırasında bir hata oluştu");
     }
   };
-  //güncelleme işlemi
-  const handleUpdate = (id) => {
-    dispatch(updateData(id));
-  };
+
+  function handleUpdateItem(product) {
+    setProductToUpdate(product);
+    setProductData(product);
+
+    window.scrollTo(0, 0);
+  }
 
   return (
     <div className="container">
+      <div>
+        <AddNewBlog
+          handleSubmit={handleSubmit}
+          productData={productData}
+          setProductData={setProductData}
+          productToUpdate={productToUpdate}
+          setProducts={setSearchData}
+        />
+      </div>
       <div>
         <Search
           active={active}
@@ -87,7 +114,7 @@ const BlogList = () => {
               description={item.description}
               image={item.image}
               onDelete={handleDelete}
-              onUpdate={handleUpdate}
+              onUpdateItem={handleUpdateItem}
             />
           ))
         ) : (

@@ -1,5 +1,7 @@
 .input_container {
   position: relative;
+  flex-direction: column;
+  display: flex;
 }
 
 .input {

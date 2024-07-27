@@ -23,7 +23,8 @@ const Search = ({ handleSearch, handleSort, active }) => {
     handleSort(value);
   };
 
-  const handleReset = () => {
+  const handleReset = (e) => {
+    e.preventDefault();
     setSearch("");
     handleSearch("");
     setSortValue("");

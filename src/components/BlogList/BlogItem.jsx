@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import Button from "../ui/Button";
 import "../../styles/BlogItem.css";
@@ -11,7 +10,7 @@ const BlogItem = ({
   image,
   id,
   onDelete,
-  onUpdate,
+  onUpdateItem,
   url,
 }) => {
   return (
@@ -28,12 +27,15 @@ const BlogItem = ({
             <span>{date}</span>
           </div>
           <div className="button_wrapper">
-            <Link to={`/create/${id}`}>
-              {" "}
-              <Button onClick={() => onUpdate(id)} color="primary" size="sm">
-                Güncelle
-              </Button>
-            </Link>
+            <Button
+              onClick={() =>
+                onUpdateItem({ id, image, name, url, description, date })
+              }
+              color="primary"
+              size="sm"
+            >
+              Güncelle
+            </Button>
             <Button onClick={() => onDelete(id)} color="danger" size="sm">
               Sil
             </Button>
