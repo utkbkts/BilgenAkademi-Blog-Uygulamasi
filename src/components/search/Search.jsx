@@ -64,9 +64,11 @@ const Search = ({ handleSearch, handleSort, active }) => {
             justifyContent: "center",
           }}
         >
-          <Button color="primary" size="md" onClick={handleClick}>
-            <IoSearch style={{ marginBottom: "2px" }} /> Ara
-          </Button>
+          {search.length > 0 && (
+            <Button color="primary" size="md" onClick={handleClick}>
+              <IoSearch style={{ marginBottom: "2px" }} /> Ara
+            </Button>
+          )}
           {active && (
             <Button color="danger" size="md" onClick={handleReset}>
               Reset

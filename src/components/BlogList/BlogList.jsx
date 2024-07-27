@@ -39,8 +39,8 @@ const BlogList = () => {
           blog.author.toLowerCase().includes(search.toLowerCase())
         );
       });
-      setSearchData(filteredData);
       setActive(true);
+      setSearchData(filteredData);
     } else {
       setSearchData(blogData);
       setActive(false);
@@ -49,8 +49,6 @@ const BlogList = () => {
 
   // Sıralama işlemi
   const handleSort = (value) => {
-    setActive(true);
-
     const sortedData = [...searchData].sort((a, b) => {
       if (value === "author") {
         return a.author.localeCompare(b.author);
@@ -58,7 +56,7 @@ const BlogList = () => {
         return new Date(b.date) - new Date(a.date); // Sorting by date
       }
     });
-
+    setActive(true);
     setSearchData(sortedData);
   };
 
