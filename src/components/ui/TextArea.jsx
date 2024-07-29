@@ -1,10 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+import "../../styles/Input.css";
 import "../../styles/Textarea.css";
-
+import PropTypes from "prop-types";
 const TextArea = ({ name, label, value, onChange }) => {
   return (
-    <div className="input-container">
+    <div className="input_container">
       <textarea
         value={value}
         onChange={onChange}
@@ -19,9 +19,9 @@ const TextArea = ({ name, label, value, onChange }) => {
 
 TextArea.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
 
 export default TextArea;

@@ -2,15 +2,14 @@ import PropTypes from "prop-types";
 import Input from "../ui/Input";
 import TextArea from "../ui/TextArea";
 
-function ProductInput({
-  handleChange,
+const ProductInput = ({
   label,
+  type,
   placeholder,
   name,
-  type,
+  handleChange,
   value,
-  error,
-}) {
+}) => {
   return (
     <div className="input_container">
       {name === "description" ? (
@@ -32,10 +31,9 @@ function ProductInput({
           label={label}
         />
       )}
-      {error && <span className="error_message">{error}</span>}
     </div>
   );
-}
+};
 
 ProductInput.propTypes = {
   handleChange: PropTypes.func.isRequired,
@@ -44,7 +42,6 @@ ProductInput.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  error: PropTypes.string,
 };
 
 export default ProductInput;

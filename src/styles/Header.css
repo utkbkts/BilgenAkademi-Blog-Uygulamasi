@@ -26,3 +26,13 @@
   align-items: center;
   gap: 15px;
 }
+.header .wrapper .__b span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.header .wrapper .__b span:hover {
+  opacity: 0.5;
+}

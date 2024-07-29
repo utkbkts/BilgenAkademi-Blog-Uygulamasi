@@ -1,107 +1,51 @@
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
+import React, { useState } from "react";
 
 import BlogItem from "./BlogItem";
 import "../../styles/BlogList.css";
 import Search from "../search/Search";
 import blogData from "../../data/BlogData";
-import AddNewBlog from "./AddNewBlog";
+import Header from "../header/Header";
+import Modal from "./Modal";
 
 const BlogList = () => {
-  const [searchData, setSearchData] = useState(blogData);
-  const [active, setActive] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [productToUpdate, setProductToUpdate] = useState();
-  const [productData, setProductData] = useState({
+  const [products, setProducts] = useState(blogData);
+  const [searchData, setsearchData] = useState("");
+  const [showModal, setIsShowModal] = useState(false);
+  const [form, setForm] = useState({
     name: "",
-    date: "",
-    author: "",
-    description: "",
     image: "",
+    description: "",
+    author: "",
+    date: "",
   });
 
-  function handleSubmit(productData) {
+  const handleSubmit = (productData) => {
     const newProduct = {
       ...productData,
       id: Math.random(),
     };
-
-    setSearchData([newProduct, ...searchData]);
-  }
-
-  // Arama işlemi
-  const handleSearch = (search) => {
-    setSearchTerm(search);
-    if (search.trim().length > 0) {
-      const filteredData = searchData.filter((blog) => {
-        return (
-          blog.name.toLowerCase().includes(search.toLowerCase()) ||
-          blog.author.toLowerCase().includes(search.toLowerCase())
-        );
-      });
-      setActive(true);
-      setSearchData(filteredData);
-    } else {
-      setSearchData(blogData);
-      setActive(false);
-    }
+    setProducts([newProduct, ...products]);
   };
-
-  // Sıralama işlemi
-  const handleSort = (value) => {
-    const sortedData = [...searchData].sort((a, b) => {
-      if (value === "author") {
-        return a.author.localeCompare(b.author);
-      } else if (value === "date") {
-        return new Date(b.date) - new Date(a.date); // Sorting by date
-      }
-    });
-    setActive(true);
-    setSearchData(sortedData);
-  };
-
-  // Silme işlemi
-  const handleDelete = (id) => {
-    if (window.confirm("Silmek istediğine emin misin ?")) {
-      setSearchData((products) =>
-        products.filter((product) => {
-          return product.id !== id;
-        })
-      );
-      toast.success("Başarıyla Silindi");
-    } else {
-      toast.error("Silinme İşlemi Sırasında bir hata oluştu");
-    }
-  };
-
-  function handleUpdateItem(product) {
-    setProductToUpdate(product);
-    setProductData(product);
-
-    window.scrollTo(0, 0);
-  }
 
   return (
     <div className="container">
       <div>
-        <AddNewBlog
-          handleSubmit={handleSubmit}
-          productData={productData}
-          setProductData={setProductData}
-          productToUpdate={productToUpdate}
-          setProducts={setSearchData}
-        />
+        <Header setIsShowModal={setIsShowModal} showModal={showModal} />
+        {showModal && (
+          <Modal
+            setIsShowModal={setIsShowModal}
+            setForm={setForm}
+            form={form}
+            handleSubmit={handleSubmit}
+          />
+        )}
       </div>
       <div>
-        <Search
-          active={active}
-          handleSearch={handleSearch}
-          handleSort={handleSort}
-        />
+        <Search />
       </div>
       <div className="wrapper">
-        {searchData.length > 0 ? (
-          searchData.map((item) => (
+        {products.length > 0 ? (
+          products.map((item) => (
             <BlogItem
               key={item.id}
               id={item.id}
@@ -110,14 +54,11 @@ const BlogList = () => {
               author={item.author}
               date={item.date}
               description={item.description}
-              image={item.image}
-              onDelete={handleDelete}
-              onUpdateItem={handleUpdateItem}
             />
           ))
         ) : (
           <div className="no-results">
-            Böyle "{`${searchTerm}`}" bir yazar veya blog ismi bulunamadı...
+            Böyle "" bir yazar veya blog ismi bulunamadı...
           </div>
         )}
       </div>
