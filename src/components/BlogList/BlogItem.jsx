@@ -1,12 +1,34 @@
 import React from "react";
 
 import "../../styles/BlogItem.css";
-const BlogItem = ({ name, url, author, date, description }) => {
+import Button from "../ui/Button";
+const BlogItem = ({
+  name,
+  url,
+  id,
+  author,
+  date,
+  description,
+  image,
+  onUpdateItem,
+  setProducts,
+}) => {
+  const handleDeleteItem = () => {
+    if (window.confirm("Silmek istediğinize emin misiniz ?")) {
+      setProducts((products) =>
+        products.filter((product) => {
+          return product.id !== id;
+        })
+      );
+    } else {
+      return;
+    }
+  };
   return (
     <div className="container_blog">
       <div className="product_Item">
         <div className="image">
-          <img src={url} />
+          <img src={url || image} />
         </div>
         <div className="product_detail">
           <h1>{name}</h1>
@@ -16,12 +38,30 @@ const BlogItem = ({ name, url, author, date, description }) => {
             <span>{date}</span>
           </div>
           <div className="button_wrapper">
-            <button color="primary" size="sm">
+            <Button
+              onClick={() =>
+                onUpdateItem({
+                  id,
+                  name,
+                  url,
+                  author,
+                  date,
+                  description,
+                  image,
+                })
+              }
+              color="primary"
+              size="sm"
+            >
               Güncelle
-            </button>
-            <button color="danger" size="sm">
+            </Button>
+            <Button
+              onClick={() => handleDeleteItem(id)}
+              color="danger"
+              size="sm"
+            >
               Sil
-            </button>
+            </Button>
           </div>
         </div>
       </div>

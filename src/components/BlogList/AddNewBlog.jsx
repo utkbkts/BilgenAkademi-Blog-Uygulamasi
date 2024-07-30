@@ -1,4 +1,6 @@
+import toast from "react-hot-toast";
 import "../../styles/Create.css";
+import Button from "../ui/Button";
 import ProductInput from "./ProductInput";
 
 const productInputs = [
@@ -29,28 +31,61 @@ const productInputs = [
   {
     label: "Date",
     type: "date",
-    placeholder: "Tarih ismi giriniz.",
+    placeholder: "Tarih giriniz.",
     name: "date",
   },
 ];
 
-const AddNewBlog = ({ handleSubmit, form, setForm, handleClose }) => {
+const AddNewBlog = ({
+  handleSubmit,
+  form,
+  setForm,
+  handleClose,
+  productToUpdate,
+  setProductToUpdate,
+  setProducts,
+  setIsShowModal,
+}) => {
   const handleChange = ({ target: { name, value } }) => {
     setForm({ ...form, [name]: value });
   };
 
-  function onSubmit(e) {
+  const onSubmit = (e) => {
     e.preventDefault();
 
-    handleSubmit(form);
-    console.log(form);
-  }
+    const isFormValid = Object.values(form).every(
+      (value) => String(value).trim() !== ""
+    );
+
+    if (!isFormValid) {
+      toast.error("Tüm alanları doldurunuz");
+      return;
+    }
+
+    if (productToUpdate) {
+      setProducts((products) =>
+        products.map((item) =>
+          item.id === productToUpdate.id
+            ? { ...form, id: productToUpdate.id }
+            : item
+        )
+      );
+      toast.success("Blog başarıyla güncellendi");
+      setProductToUpdate(null);
+    } else {
+      handleSubmit(form);
+      toast.success("Blog başarıyla oluşturuldu");
+    }
+
+    setIsShowModal(false);
+    handleClose();
+  };
   return (
     <div className="container_blogs">
       <div className="modal_overlay" onClick={handleClose}></div>
       <div className="create_wrapper">
         <div className="blog_form">
-          <h1>Post Ekle</h1>
+          <h1>{productToUpdate ? "Blog Güncelle" : "Yeni Blog Ekle"}</h1>
           <form onSubmit={onSubmit}>
             {productInputs.map((input, index) => (
               <ProductInput
@@ -60,9 +95,9 @@ const AddNewBlog = ({ handleSubmit, form, setForm, handleClose }) => {
                 {...input}
               />
             ))}
-            <button type="submit" size="md" color="primary">
-              Oluştur
-            </button>
+            <Button type="submit" size="md" color="primary">
+              {productToUpdate ? "Güncelle" : "Oluştur"}
+            </Button>
           </form>
         </div>
       </div>

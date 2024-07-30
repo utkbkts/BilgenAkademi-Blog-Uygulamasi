@@ -9,8 +9,12 @@ import Modal from "./Modal";
 
 const BlogList = () => {
   const [products, setProducts] = useState(blogData);
-  const [searchData, setsearchData] = useState("");
+  const [searchData, setSearchData] = useState("");
   const [showModal, setIsShowModal] = useState(false);
+  const [isSearched, setIsSearched] = useState(false);
+  const [sortProducts, setSortProducts] = useState("");
+  const [productToUpdate, setProductToUpdate] = useState("");
+
   const [form, setForm] = useState({
     name: "",
     image: "",
@@ -27,6 +31,45 @@ const BlogList = () => {
     setProducts([newProduct, ...products]);
   };
 
+  const handleSearch = () => {
+    setIsSearched(true);
+    const filteredProducts = blogData.filter(
+      (item) =>
+        item.name.toLowerCase().includes(searchData.toLowerCase()) ||
+        item.author.toLowerCase().includes(searchData.toLowerCase())
+    );
+    setProducts(filteredProducts);
+  };
+
+  const handleSort = (sorted) => {
+    setIsSearched(true);
+    setSortProducts(sorted);
+    const sortedProducts = [...products].sort((a, b) => {
+      if (sorted === "name") {
+        return a.name.localeCompare(b.name);
+      } else if (sorted === "author") {
+        return a.author.localeCompare(b.author);
+      } else if (sorted === "date") {
+        return new Date(b.date) - new Date(a.date);
+      }
+      return;
+    });
+    setProducts(sortedProducts);
+  };
+
+  const handleReset = () => {
+    setSearchData("");
+    setProducts(blogData);
+    setIsSearched(false);
+    setSortProducts("");
+  };
+
+  const handleUpdateItem = (product) => {
+    setProductToUpdate(product);
+    setForm(product);
+    setIsShowModal(true);
+  };
+
   return (
     <div className="container">
       <div>
@@ -36,12 +79,23 @@ const BlogList = () => {
             setIsShowModal={setIsShowModal}
             setForm={setForm}
             form={form}
+            productToUpdate={productToUpdate}
+            setProductToUpdate={setProductToUpdate}
             handleSubmit={handleSubmit}
+            setProducts={setProducts}
           />
         )}
       </div>
       <div>
-        <Search />
+        <Search
+          handleReset={handleReset}
+          handleSearch={handleSearch}
+          searchData={searchData}
+          isSearched={isSearched}
+          setSearchData={setSearchData}
+          handleSort={handleSort}
+          sortProducts={sortProducts}
+        />
       </div>
       <div className="wrapper">
         {products.length > 0 ? (
@@ -51,14 +105,17 @@ const BlogList = () => {
               id={item.id}
               name={item.name}
               url={item.url}
+              image={item.image}
               author={item.author}
               date={item.date}
               description={item.description}
+              onUpdateItem={handleUpdateItem}
+              setProducts={setProducts}
             />
           ))
         ) : (
           <div className="no-results">
-            Böyle "" bir yazar veya blog ismi bulunamadı...
+            Böyle "{searchData}" bir yazar veya blog ismi bulunamadı...
           </div>
         )}
       </div>

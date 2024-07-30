@@ -1,7 +1,15 @@
 import React from "react";
+import "../../styles/Button.css";
+const Button = ({ color, size, addClass, children, onClick, type }) => {
+  const btnClassNames = `btn btn-${color} btn-${size} ${
+    addClass ? addClass : ""
+  }`;
 
-const Button = () => {
-  return <div>Button</div>;
+  return (
+    <button className={btnClassNames} onClick={onClick} type={type}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;
