@@ -42,6 +42,11 @@
   margin-top: 10px;
   width: 100%;
 }
+.product_detail .product-category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .product_Item .image img {
   width: 100%;
   height: 100%;

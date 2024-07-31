@@ -12,6 +12,7 @@ const BlogItem = ({
   image,
   onUpdateItem,
   setProducts,
+  category,
 }) => {
   const handleDeleteItem = () => {
     if (window.confirm("Silmek istediğinize emin misiniz ?")) {
@@ -36,6 +37,10 @@ const BlogItem = ({
           <div className="product_author">
             <span>{author}</span>
             <span>{date}</span>
+          </div>
+          <div className="product-category">
+            {" "}
+            {Array.isArray(category) ? category.join(",") : category}
           </div>
           <div className="button_wrapper">
             <Button

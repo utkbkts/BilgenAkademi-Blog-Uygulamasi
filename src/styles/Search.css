@@ -21,7 +21,22 @@ input[type="text"] {
   width: 100%;
   outline: none;
 }
-
+.wrapper_search .__a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.wrapper_search .__a {
+  position: relative;
+}
+.wrapper_search .__a input {
+  padding: 10px 1.8rem;
+}
+.wrapper_search .__a .icon {
+  position: absolute;
+  left: 2px;
+  bottom: 8.6px;
+}
 select {
   padding: 10px;
   outline: none;

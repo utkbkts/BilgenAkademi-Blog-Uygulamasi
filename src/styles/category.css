@@ -1,0 +1,38 @@
+.category-list {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.category-list span {
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
+}
+.category-list .__a {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.btn-category {
+  background-color: #2e3039;
+  color: white;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-category:hover {
+  border-color: rgb(239 68 68 / 1);
+}
+
+.btn-category.active {
+  background-color: white;
+  border-color: rgb(239 68 68 / 1);
+  color: black;
+}

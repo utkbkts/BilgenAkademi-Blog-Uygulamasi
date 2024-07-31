@@ -1,5 +1,6 @@
 import "../../styles/Search.css";
 import Button from "../ui/Button";
+import { CiSearch } from "react-icons/ci";
 
 const Search = ({
   handleSearch,
@@ -23,13 +24,16 @@ const Search = ({
     <div className="search-container">
       <form onSubmit={onSubmit}>
         <div className="wrapper_search">
-          <input
-            type="text"
-            value={searchData}
-            onChange={(e) => setSearchData(e.target.value)}
-            name="search"
-            placeholder="Blog adı veya yazar adıyla arayın"
-          />
+          <div className="__a">
+            <input
+              type="text"
+              value={searchData}
+              onChange={(e) => setSearchData(e.target.value)}
+              name="search"
+              placeholder="Blog adı veya yazar adıyla arayın"
+            />
+            <CiSearch size={25} className="icon" color="black" />
+          </div>
           <select
             name="searchFilter"
             value={sortProducts}

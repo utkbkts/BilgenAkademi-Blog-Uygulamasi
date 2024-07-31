@@ -8,6 +8,7 @@ const blogData = [
       "Yapay zeka (AI), hayatımızın her alanında devrim yaratıyor. Bu makalede, AI'nin gelecekte nasıl şekilleneceği ve potansiyel etkileri üzerine detaylı bir inceleme yapıyoruz.",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgI12_kaA_xfWLVUcPp45zA1BkC-E2lxYG7w&s",
+    category: ["Yapay Zeka", "Teknoloji"],
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ const blogData = [
       "Blockchain, sadece kripto para birimleri için değil, aynı zamanda güvenli ve şeffaf veri yönetimi için de devrim niteliğinde bir teknoloji. Blockchain'in farklı sektörlerdeki uygulamaları hakkında bilgi edinin.",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJr8-_AGqIEZzvC73j7B3wDlqLzUZWOtmreQ&s",
+    category: ["Güvenlik", "Teknoloji"],
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const blogData = [
       "IoT, gündelik nesneleri internetle bağlayarak hayatımızı kolaylaştırıyor. Bu makalede, IoT'nin nasıl çalıştığını ve hayatımıza getirdiği yenilikleri keşfedeceksiniz.",
     image:
       "https://cdn.mysoft.com.tr/v1/images/nesnelerin-interneti-iot-nedir-ne-ise-yarar-nesnelerin-interneti-kullanim-alanlari-nelerdir_1.webp",
+    category: ["Teknoloji"],
   },
   {
     id: 4,
@@ -38,6 +41,7 @@ const blogData = [
       "5G, mobil iletişimde devrim yaratıyor. Bu makalede, 5G'nin sunduğu yenilikler ve avantajları hakkında kapsamlı bir analiz sunuyoruz.",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbVPpZMp30aoXusy0V7Js0KNzQt9f-69sB1A&s",
+    category: ["Teknoloji"],
   },
   {
     id: 5,
@@ -48,6 +52,7 @@ const blogData = [
       "Dijital dünyada güvenlik, her zamankinden daha önemli. Siber güvenlik önlemleri ve stratejileri hakkında bilgilendirici bir makale.",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlnIGRh6-5TunpO8cn3XS-IWNqmprhfzsU2Q&s",
+    category: ["Güvenlik"],
   },
   {
     id: 6,
@@ -58,6 +63,7 @@ const blogData = [
       "Yazılım geliştirme dünyasında en son trendler ve yenilikler. Bu makalede, 2024'te yazılım geliştirme alanında neler bekleyebileceğinizi öğrenin.",
     image:
       "https://www.pazarlamasyon.com/wp-content/uploads/2023/01/17/yazilim-gelistirmede-2023-un-en-onemli-trendleri.jpg",
+    category: ["Teknoloji", "Güvenlik"],
   },
   {
     id: 7,
@@ -68,6 +74,7 @@ const blogData = [
       "Bulut bilişim, verilerin güvenli ve erişilebilir olmasını sağlıyor. Bulut bilişimin avantajları ve uygulamaları hakkında detaylı bilgi.",
     image:
       "https://turk.net/blog/wp-content/uploads/bulut-bilisim-cloud-computing-nedir-2x.jpg",
+    category: ["Teknoloji"],
   },
   {
     id: 8,
@@ -78,6 +85,7 @@ const blogData = [
       "Giyilebilir cihazlar, sağlık ve fitness'tan eğlenceye kadar birçok alanda kullanılabiliyor. Bu makalede, giyilebilir teknolojilerin güncel durumu ve geleceği inceleniyor.",
     image:
       "https://fikrimulkiyet.com/wp-content/uploads/2022/08/giyilebilir-teknolojiler-calisma-hayatina-konformu-getiriyor-fikrimulkiyet.com-av.taner-sevim.jpg",
+    category: ["Teknoloji"],
   },
   {
     id: 9,
@@ -88,6 +96,7 @@ const blogData = [
       "Robotlar ve otomasyon sistemleri, endüstriyel süreçleri dönüştürüyor. Robotik teknolojilerin çalışma prensipleri ve uygulama alanları hakkında bilgi.",
     image:
       "https://www.yapikredi.com.tr/medium/image/robotik-otomasyon-ve-uretimin-gelecegi_68490/view",
+    category: ["Teknoloji"],
   },
   {
     id: 10,
@@ -98,6 +107,7 @@ const blogData = [
       "VR ve AR teknolojileri, kullanıcı deneyimini farklı bir boyuta taşıyor. Bu makalede, VR ve AR'nin mevcut uygulamaları ve gelecekteki potansiyeli ele alınıyor.",
     image:
       "https://www.cioupdate.com.tr/wp-content/uploads/2021/09/sanal-gerceklik.jpeg",
+    category: ["Teknoloji"],
   },
 ];
 

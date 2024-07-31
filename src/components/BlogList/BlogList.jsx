@@ -6,6 +6,7 @@ import Search from "../search/Search";
 import blogData from "../../data/BlogData";
 import Header from "../header/Header";
 import Modal from "./Modal";
+import Category from "./Category";
 
 const BlogList = () => {
   const [products, setProducts] = useState(blogData);
@@ -13,6 +14,7 @@ const BlogList = () => {
   const [showModal, setIsShowModal] = useState(false);
   const [isSearched, setIsSearched] = useState(false);
   const [sortProducts, setSortProducts] = useState("");
+  const [categoryProducts, setCategoryProducts] = useState("");
   const [productToUpdate, setProductToUpdate] = useState("");
 
   const [form, setForm] = useState({
@@ -57,11 +59,26 @@ const BlogList = () => {
     setProducts(sortedProducts);
   };
 
+  const categories = [
+    ...new Set(blogData.flatMap((item) => item.category).filter(Boolean)),
+  ];
+
+  const handleCategory = (category) => {
+    setIsSearched(true);
+
+    setCategoryProducts(category);
+    const filteredProducts = blogData.filter((item) =>
+      item.category.includes(category)
+    );
+    setProducts(filteredProducts);
+  };
+
   const handleReset = () => {
     setSearchData("");
     setProducts(blogData);
     setIsSearched(false);
     setSortProducts("");
+    setCategoryProducts("");
   };
 
   const handleUpdateItem = (product) => {
@@ -97,6 +114,13 @@ const BlogList = () => {
           sortProducts={sortProducts}
         />
       </div>
+      <div className="category">
+        <Category
+          categoryProducts={categoryProducts}
+          categories={categories}
+          onCategoryClick={handleCategory}
+        />
+      </div>
       <div className="wrapper">
         {products.length > 0 ? (
           products.map((item) => (
@@ -108,6 +132,7 @@ const BlogList = () => {
               image={item.image}
               author={item.author}
               date={item.date}
+              category={item.category}
               description={item.description}
               onUpdateItem={handleUpdateItem}
               setProducts={setProducts}

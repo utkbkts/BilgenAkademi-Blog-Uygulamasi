@@ -26,6 +26,9 @@
   align-items: center;
   gap: 15px;
 }
+.header .wrapper .__a h1 {
+  letter-spacing: 1.2px;
+}
 .header .wrapper .__b span {
   display: flex;
   align-items: center;
