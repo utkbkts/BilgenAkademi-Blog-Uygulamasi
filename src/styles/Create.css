@@ -96,3 +96,21 @@
 .blog_form button:hover {
   background-color: #0056b3;
 }
+.category-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.category-input .category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+.category-input .category-list .category-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.category-item button {
+}

@@ -2,34 +2,35 @@ import toast from "react-hot-toast";
 import "../../styles/Create.css";
 import Button from "../ui/Button";
 import ProductInput from "./ProductInput";
+import { useState } from "react";
 
 const productInputs = [
   {
-    label: "name",
+    label: "İsim",
     type: "text",
     placeholder: "Blog ismi giriniz.",
     name: "name",
   },
   {
-    label: "Image Url",
+    label: "Url",
     type: "url",
     placeholder: "Blog görseli giriniz.",
     name: "image",
   },
   {
-    label: "Description*",
+    label: "Açıklama*",
     type: "text",
     placeholder: "Blog açıklaması giriniz.",
     name: "description",
   },
   {
-    label: "Author",
+    label: "Yazar",
     type: "text",
     placeholder: "Yazar ismi giriniz.",
     name: "author",
   },
   {
-    label: "Date",
+    label: "Tarih",
     type: "date",
     placeholder: "Tarih giriniz.",
     name: "date",
@@ -46,8 +47,31 @@ const AddNewBlog = ({
   setProducts,
   setIsShowModal,
 }) => {
+  const [newCategory, setNewCategory] = useState("");
+
   const handleChange = ({ target: { name, value } }) => {
     setForm({ ...form, [name]: value });
+  };
+
+  const handleCategoryChange = (e) => {
+    setNewCategory(e.target.value);
+  };
+
+  const handleAddCategory = () => {
+    if (newCategory.trim() !== "") {
+      setForm({
+        ...form,
+        category: [...(form.category || []), newCategory.trim()],
+      });
+      setNewCategory("");
+    }
+  };
+
+  const handleRemoveCategory = (categoryToRemove) => {
+    setForm({
+      ...form,
+      category: form.category.filter((cat) => cat !== categoryToRemove),
+    });
   };
 
   const onSubmit = (e) => {
@@ -95,6 +119,37 @@ const AddNewBlog = ({
                 {...input}
               />
             ))}
+            <div className="category-input">
+              <label>Kategoriler</label>
+              <input
+                type="text"
+                value={newCategory}
+                onChange={handleCategoryChange}
+                placeholder="Kategori Giriniz."
+              />
+              <Button
+                type="button"
+                size="sm"
+                color="primary"
+                onClick={handleAddCategory}
+              >
+                Ekle
+              </Button>
+              <div className="category-list">
+                {form.category &&
+                  form.category.map((cat, index) => (
+                    <div key={index} className="category-item">
+                      {cat}
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveCategory(cat)}
+                      >
+                        X
+                      </button>
+                    </div>
+                  ))}
+              </div>
+            </div>
             <Button type="submit" size="md" color="primary">
               {productToUpdate ? "Güncelle" : "Oluştur"}
             </Button>

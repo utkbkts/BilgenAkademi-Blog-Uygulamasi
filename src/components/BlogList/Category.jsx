@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/category.css";
 const Category = ({ categories, onCategoryClick, categoryProducts }) => {
   return (
-    <div className="category-list">
+    <div className="category-lists">
       <span>Kategoriler</span>
       <div className="__a">
         {categories.map((category, index) => (
