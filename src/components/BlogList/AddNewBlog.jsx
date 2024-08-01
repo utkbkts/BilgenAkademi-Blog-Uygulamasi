@@ -120,7 +120,6 @@ const AddNewBlog = ({
               />
             ))}
             <div className="category-input">
-              <label>Kategoriler</label>
               <input
                 type="text"
                 value={newCategory}
